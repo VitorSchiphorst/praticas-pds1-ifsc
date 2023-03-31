@@ -20,6 +20,7 @@ public class pratica2 extends JFrame {
 	private JTextField txtMaior;
 	private JTextField txtMenor;
 	private JTextField txtCadastrar;
+	private ArrayList<Double> Nums;
 
 	/**
 	 * Launch the application.
@@ -89,13 +90,12 @@ public class pratica2 extends JFrame {
 		lblCadastrar.setBounds(148, 132, 112, 14);
 		contentPane.add(lblCadastrar);
 		
-		ArrayList <Double> nums = new ArrayList <Double>();
-		Double numX = Double.parseDouble(txtCadastrar.getText());
+		Nums = new ArrayList <Double>();
 		
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				nums.add(numX);
+				Double numX = Double.parseDouble(txtCadastrar.getText());
+				Nums.add(numX);
 			}
 		});
 		
@@ -104,14 +104,14 @@ public class pratica2 extends JFrame {
 				Double maiorNum = Double.MIN_VALUE;
 				Double menorNum = Double.MAX_VALUE;
 				
-				for (int i = 0; i < nums.size(); i++) {
+				for (int i = 0; i < Nums.size(); i++) {
 					
-					if(nums.get(i) > maiorNum) {
-						maiorNum = nums.get(i);
+					if(Nums.get(i) > maiorNum) {
+						maiorNum = Nums.get(i);
 					}
 					
-					if(nums.get(i) < menorNum) {
-						menorNum = nums.get(i);
+					if(Nums.get(i) < menorNum) {
+						menorNum = Nums.get(i);
 					}
 				}
 				
