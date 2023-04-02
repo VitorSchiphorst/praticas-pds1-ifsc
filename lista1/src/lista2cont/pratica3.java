@@ -10,6 +10,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
@@ -19,8 +21,6 @@ public class pratica3 extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtExibirAluno;
 	private JTextField txtExibirProf;
-	private ArrayList<String> Aluno;
-	private ArrayList<String> Prof;
 	private JLabel lblDados;
 	private JLabel lblNewLabel_2;
 	private JTextField txtNome;
@@ -32,7 +32,7 @@ public class pratica3 extends JFrame {
 	private JTextField txtMatricula;
 	private JTextField txtSiape;
 	private JButton btnCadastrarProf;
-	private JButton btnCadastrarAluno_1;
+	private JButton btnCadastrarAluno;
 
 	/**
 	 * Launch the application.
@@ -72,26 +72,19 @@ public class pratica3 extends JFrame {
 		lblNewLabel_1.setBounds(10, 89, 107, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton btnAluno = new JButton("Exibir Aluno");
-		btnAluno.setBounds(65, 334, 107, 23);
-		contentPane.add(btnAluno);
-		
-		JButton btnProfessor = new JButton("Exibir Professor");
-		btnProfessor.setBounds(345, 334, 107, 23);
-		contentPane.add(btnProfessor);
 		
 		txtExibirAluno = new JTextField();
 		txtExibirAluno.setEnabled(false);
 		txtExibirAluno.setEditable(false);
 		txtExibirAluno.setColumns(10);
-		txtExibirAluno.setBounds(285, 236, 208, 81);
+		txtExibirAluno.setBounds(25, 242, 208, 81);
 		contentPane.add(txtExibirAluno);
 		
 		txtExibirProf = new JTextField();
 		txtExibirProf.setEditable(false);
 		txtExibirProf.setEnabled(false);
 		txtExibirProf.setColumns(10);
-		txtExibirProf.setBounds(26, 236, 208, 81);
+		txtExibirProf.setBounds(299, 242, 208, 81);
 		contentPane.add(txtExibirProf);
 		
 		lblDados = new JLabel("Dados");
@@ -146,25 +139,76 @@ public class pratica3 extends JFrame {
 		txtSiape.setBounds(378, 86, 128, 20);
 		contentPane.add(txtSiape);
 		
-		Aluno = new ArrayList <String>();
-		Prof = new ArrayList <String>();
+		ArrayList <String> Alunos = new ArrayList <String>();
+		ArrayList <String> Professores = new ArrayList <String>();
+		
+		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+		Date dataFormatada;
 		
 		btnCadastrarProf = new JButton("Cadastrar Professor");
+		btnCadastrarProf.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnCadastrarProf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Professor p = new Professor();
-				p.setNome(txtNome.getText());
-				p.setNascimento(txtNascimento.getText());
+		        Professor prof = new Professor();
+		
+				prof.setSiape(Long.parseLong(txtSiape.getText()));
+				prof.setNome(txtNome.getText());
+				prof.setNascimento(txtNascimento.getText());
+				prof.setCpf(Long.parseLong(txtCpf.getText()));
 				
-				
+				Professores.add(prof.toString());
+				txtNome.setText(null);
+				txtNascimento.setText(null);
+				txtMatricula.setText(null);
+				txtSiape.setText(null);
+				txtCpf.setText(null);
 			}
 		});
-		btnCadastrarProf.setBounds(195, 163, 141, 23);
+		btnCadastrarProf.setBounds(179, 163, 177, 23);
 		contentPane.add(btnCadastrarProf);
 		
-		btnCadastrarAluno_1 = new JButton("Cadastrar Aluno");
-		btnCadastrarAluno_1.setBounds(195, 194, 140, 23);
-		contentPane.add(btnCadastrarAluno_1);
+		btnCadastrarAluno = new JButton("Cadastrar Aluno");
+		btnCadastrarAluno.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCadastrarAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Aluno aluno = new Aluno();
+				
+				aluno.setMatricula(Long.parseLong(txtMatricula.getText()));
+				aluno.setNome(txtNome.getText());
+				aluno.setNascimento(txtNascimento.getText());
+				aluno.setCpf(Long.parseLong(txtCpf.getText()));
+				
+				Alunos.add(aluno.toString());
+				txtNome.setText(null);
+				txtNascimento.setText(null);
+				txtMatricula.setText(null);
+				txtSiape.setText(null);
+				txtCpf.setText(null);
+			}
+		});
+		btnCadastrarAluno.setBounds(179, 197, 177, 23);
+		contentPane.add(btnCadastrarAluno);
+		
+		JButton btnProfessor = new JButton("Exibir Professor");
+		btnProfessor.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnProfessor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtExibirProf.setText(""+Professores);
+			}
+		});
+		btnProfessor.setBounds(319, 334, 169, 23);
+		contentPane.add(btnProfessor);
+		
+		JButton btnAluno = new JButton("Exibir Aluno");
+		btnAluno.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtExibirAluno.setText(""+Alunos);
+			}
+		});
+		btnAluno.setBounds(46, 334, 169, 23);
+		contentPane.add(btnAluno);
 	}
 
 }
+

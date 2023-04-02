@@ -1,10 +1,8 @@
 package lista2cont;
 
-import java.sql.Date;
-
 public class Pessoa {
 	private String nome;
-	private Date nascimento;
+	private String nascimento;
 	private Long cpf;
 	
 	public String getNome() {
@@ -13,10 +11,10 @@ public class Pessoa {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Date getNascimento() {
+	public String getNascimento() {
 		return nascimento;
 	}
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
 	}
 	public Long getCpf() {
@@ -24,9 +22,5 @@ public class Pessoa {
 	}
 	public void setCpf(Long cpf) {
 		this.cpf = cpf;
-	}
-	
-	public String toString() {
-		return ;
 	}
 }

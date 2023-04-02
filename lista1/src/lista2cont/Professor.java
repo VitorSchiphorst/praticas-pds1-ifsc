@@ -10,4 +10,11 @@ public class Professor extends Pessoa {
 	public void setSiape(Long siape) {
 		this.siape = siape;
 	}
+	
+	@Override
+	public String toString() {
+		return "Nome: " + super.getNome() +" Siape: "+
+		this.getSiape()+" Data nascimento: "+super.getNascimento()+
+		" CPF: "+ super.getCpf();
+	}
 }

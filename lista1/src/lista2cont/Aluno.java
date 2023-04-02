@@ -10,4 +10,11 @@ public class Aluno extends Pessoa {
 	public void setMatricula(Long matricula) {
 		this.matricula = matricula;
 	}
+	
+	@Override
+	public String toString() {
+		return "Nome: " + super.getNome() +" Siape: "+
+		this.getMatricula()+" Data nascimento: "+super.getNascimento()+
+		" CPF: "+ super.getCpf();
+	}
 }
